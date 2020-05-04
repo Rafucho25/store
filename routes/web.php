@@ -13,10 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
+Route::get('/', 'WelcomeController');
 
 Route::get('/login', function () {
     return view('auth.login');
@@ -32,4 +30,8 @@ Route::post('/login', 'UserController@login');
 
 Route::post('/register', 'UserController@register');
 
+Route::get('product/{id}','ProductController@index');
 
+Route::get('/search', 'ProductController@search');
+
+Route::get('addwishlist/{id?}', 'WishListController@add')->name('addwishlist');

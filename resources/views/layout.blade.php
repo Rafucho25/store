@@ -1,3 +1,6 @@
+@php
+  $categories = DB::table('categories')->get();               
+@endphp
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -5,8 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         @yield('tittle')
-
-        <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+        <link href="font_awesome/css/all.css" rel="stylesheet">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         @yield('header')
     </head>
@@ -19,30 +21,43 @@
               <span class="navbar-toggler-icon"></span>
             </button>
           
-            <form class="form-inline my-2 my-lg-0">
-              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            <form action="search">
+              <div class="input-group">
+                <input type="text" class="form-control" name="text">
+                <select class="form-control" name="category" id="category">
+                  <option value="" selected>Todas</option>
+                  @foreach ($categories as $category)
+                  <option value="{{$category->id}}">{{$category->description}}</option>
+                  @endforeach
+                </select>
+                <input type="submit" class="btn btn-outline-primary" value="Enviar">
+              </div>
             </form>
 
             <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-              @if ($user = Sentinel::check())
+              @if (Sentinel::check())
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
                     Cuenta
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="profile">Mi Perfil</a>
-                    <a class="dropdown-item" href="logout">Cerrar sesion</a>
+                    <a class="dropdown-item" href="profile"></i><i class="fas fa-address-card"></i> Mi Perfil</a>
+                    <a class="dropdown-item" href="logout"><i class="fas fa-sign-out-alt"></i> Cerrar sesion</a>
                   </div>
                 </li>
+                <ul class="navbar-nav mr-auto">
+                  <li>
+                    <a href="wishlist"><i class="far fa-heart text-danger"></i></a>
+                  </li>
+                  <li>
+                    <a href="cart"><i class="fas fa-shopping-cart"></i></a>
+                  </li>
+                </ul>
               @else
                 <div class="top-right">
                   <ul class="navbar-nav mr-auto">
                     <li> 
-                      <a href="/register">Registrarse</a>
-                    </li>
-                    <li> 
-                      <a href="/login">Iniciar Sesion</a>
+                      <a href="/login"><i class="fas fa-user-circle text-primary"></i></a>
                     </li>
                   </ul>
                 </div>
@@ -51,12 +66,13 @@
         </nav>
 
         @yield('body')
-
+        
         <footer>
-            <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-            @yield('footer')
+          <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+          <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+          <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.js"></script>
+          @yield('footer')
         </footer>
     </body>
 </html>
