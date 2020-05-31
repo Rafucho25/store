@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProductsTable extends Migration
+class CreateOrderdetailsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,25 +13,24 @@ class CreateProductsTable extends Migration
      */
     public function up()
     {
-        Schema::create('products', function (Blueprint $table) {
+        Schema::create('orderdetails', function (Blueprint $table) {
             $table->id();
-            $table->string('name',300);
-            $table->longText('description');
-            $table->string('logo',300);
+            $table->foreignId('order_id');
+            $table->foreignId('product_id');
             $table->decimal('price', 11, 2);
             $table->integer('quantity');
             $table->string('condition',50);
-            $table->smallInteger('stars')->nullable();
             $table->decimal('shipping', 11, 2);
-            $table->foreignId('category_id');
-            $table->foreignId('store_id');
             $table->timestamps();
         });
-
-        Schema::table('products', function($table) {
-            $table->foreign('category_id')->references('id')->on('categories');
+        
+        Schema::table('orderdetails', function($table) {
+            $table->foreign('order_id')->references('id')->on('orders');
         });
         
+        Schema::table('orderdetails', function($table) {
+            $table->foreign('product_id')->references('id')->on('products');
+        });
     }
 
     /**
@@ -41,6 +40,6 @@ class CreateProductsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('products');
+        Schema::dropIfExists('orderdetails');
     }
 }

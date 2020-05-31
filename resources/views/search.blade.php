@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('tittle')
+@section('title')
     <title>Busqueda</title>
 @endsection
 
@@ -40,12 +40,16 @@
                 idProduct = event.target.id;
                 $.ajax({
                     type: "get",
-                    url: "{!! route('addwishlist') !!}" + "/" + idProduct
-                }).done(function(){
+                    url: "{!! route('user.addWishList') !!}" + "/" + idProduct
+                }).done(function(data){
                     
-                    $("#result"+idProduct).html('Articulo agregado correctamente'); 
-                    $("#result"+idProduct).addClass("alert alert-success");
-                
+                    if(data == true){
+                        $("#result"+idProduct).html('Ya tiene este producto en su lista de deseos'); 
+                        $("#result"+idProduct).addClass("alert alert-danger");
+                    }else{
+                        $("#result"+idProduct).html('Articulo agregado correctamente'); 
+                        $("#result"+idProduct).addClass("alert alert-success");
+                    }
                 })
             });
         </script>

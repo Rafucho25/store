@@ -7,12 +7,13 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        @yield('tittle')
-        <link href="font_awesome/css/all.css" rel="stylesheet">
+        @yield('title')
+        <link href="{{asset('font_awesome/css/all.css')}}" rel="stylesheet">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         @yield('header')
     </head>
     <body>
+      @include('messages')
         <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #e3f2fd;">
             <a class="navbar-brand" href="/">
                 <img src="{{asset('images/logo.png')}}" width="100" height="30" alt="">
@@ -21,7 +22,7 @@
               <span class="navbar-toggler-icon"></span>
             </button>
           
-            <form action="search">
+            <form action="{{route('search')}}">
               <div class="input-group">
                 <input type="text" class="form-control" name="text">
                 <select class="form-control" name="category" id="category">
@@ -41,16 +42,19 @@
                     Cuenta
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="profile"></i><i class="fas fa-address-card"></i> Mi Perfil</a>
-                    <a class="dropdown-item" href="logout"><i class="fas fa-sign-out-alt"></i> Cerrar sesion</a>
+                    <a class="dropdown-item" href="{{ route('user.profile')}}"><i class="fas fa-address-card"></i> Mi Perfil</a>
+                    <a class="dropdown-item" href="{{ route('logout')}}"><i class="fas fa-sign-out-alt"></i> Cerrar sesion</a>
                   </div>
                 </li>
                 <ul class="navbar-nav mr-auto">
                   <li>
-                    <a href="wishlist"><i class="far fa-heart text-danger"></i></a>
+                    <a href="{{route('user.wishlist')}}"><i class="far fa-heart text-danger"></i></a>
                   </li>
                   <li>
-                    <a href="cart"><i class="fas fa-shopping-cart"></i></a>
+                    <a href="{{route('user.cart')}}"><i class="fas fa-shopping-cart"></i></a>
+                  </li>
+                  <li>
+                    <a href="{{route('user.orders')}}"><i class="fas fa-shopping-bag text-primary"></i></a>
                   </li>
                 </ul>
               @else

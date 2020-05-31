@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('tittle')
+@section('title')
   <title>Online Store </title>  
 @endsection
 
