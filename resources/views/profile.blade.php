@@ -1,5 +1,7 @@
 @extends('layout')
 
+@section('title') <title>Perfil - Store</title> @endsection
+
 @section('body')
     {!! Form::model($user, ['route' => ['user.update', collect($user)->first() ], 'method' => 'post' , 'enctype'=>'multipart/form-data']) !!}
 

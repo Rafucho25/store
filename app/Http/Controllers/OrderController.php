@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
+use App\Mail\OrderShipped;
+use Mail;
 use Sentinel;
 use App\Model\Order;
 use App\Model\Orderdetail;
@@ -94,5 +96,12 @@ class OrderController extends Controller
         ->get();
 
         return view('order.orderstore',compact('orders','orderDetail'));
+    }
+
+    public function send(){
+        $order = Order::find(1);
+        Mail::to('rafaeljevi@hotmail.com')->send(new OrderShipped($order));
+
+        return redirect('/')->with('messageSuccess','Orden enviada Satisfactoriamente');
     }
 }

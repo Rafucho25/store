@@ -5,7 +5,8 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+        <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width"/>
 
         @yield('title')
         <link href="{{asset('font_awesome/css/all.css')}}" rel="stylesheet">
@@ -23,6 +24,7 @@
             </button>
           
             <form action="{{route('search')}}">
+              @csrf
               <div class="input-group">
                 <input type="text" class="form-control" name="text">
                 <select class="form-control" name="category" id="category">
@@ -68,7 +70,6 @@
               @endif
             </div>
         </nav>
-
         @yield('body')
         
         <footer>

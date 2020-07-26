@@ -4,13 +4,15 @@
   <title>Online Store </title>  
 @endsection
 
-<style>
-  .scrolling-wrapper{
-	overflow-x: auto;
-	padding-top: 30px;
-	padding-bottom: 70px;	
-}
-</style>
+@section('header')
+  <style>
+    .scrolling-wrapper{
+    overflow-x: auto;
+    padding-top: 30px;
+    padding-bottom: 70px;	
+  }
+  </style>
+@endsection
 
 @section('body')
 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
@@ -21,13 +23,13 @@
   </ol>
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="https://via.placeholder.com/1024x300" class="d-block w-100" alt="...">
+      <img src="/images/banner/deals.png" width="1024px" height="400px" class="d-block w-100" alt="...">
     </div>
     <div class="carousel-item">
-      <img src="https://via.placeholder.com/1024x300" class="d-block w-100" alt="...">
+      <img src="/images/banner/deals_clother.png" width="1024px" height="400px" class="d-block w-100" alt="...">
     </div>
     <div class="carousel-item">
-      <img src="https://via.placeholder.com/1024x300" class="d-block w-100" alt="...">
+      <img src="/images/banner/deals_technology.png" width="1024px" height="400px" class="d-block w-100" alt="...">
     </div>
   </div>
   <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -44,7 +46,7 @@
   @foreach ($categories as $category)
     <li class="nav-item">
       <a class="nav-link" id="{{$category->id}}tab" data-toggle="tab" href="#category{{$category->id}}" role="tab" aria-controls="category{{$category->id}}">
-        <img src="{{$category->logo}}"alt="">
+        <img src="{{$category->logo}}" alt="{{$category->description}}" width="70px" height="70px">
       </a>
     </li>
   @endforeach
@@ -78,4 +80,8 @@
     @endforeach
   </div>
 </div>
+
+@endsection
+
+@section('footer')
 @endsection

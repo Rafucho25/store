@@ -14,7 +14,6 @@ class StoreController extends Controller
     public function index($id){
         $store = Store::find($id);
         $products = DB::table('products')->where('store_id', $store->id)->get();
-        $store = DB::table('stores')->where('user_id',Sentinel::getUser()->store_id)->first()->id;
         $orders = DB::table('orders')
         ->where('store_id',$store)
         ->paginate(10);

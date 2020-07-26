@@ -21,6 +21,12 @@ class ProductController extends Controller
         $store = Store::find($product->store_id);
         return view('products',compact('product', 'images','store'));
     }
+
+    public function indexapi()
+    {
+        $product = Product::all();
+        return $product;
+    }
     
     public function search(Request $request){
         $category = $request->category; 

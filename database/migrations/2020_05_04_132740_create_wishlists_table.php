@@ -25,7 +25,7 @@ class CreateWishlistsTable extends Migration
         });
 
         Schema::table('wishlists', function($table) {
-            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
+            $table->foreign('product_id')->references('id')->on('products');
         });
     }
 
