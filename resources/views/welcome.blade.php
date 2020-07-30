@@ -42,6 +42,7 @@
   </a>
 </div>
 
+<center> <h2>Productos por Categorias</h2> </center>
 <ul class="nav nav" id="categories">
   @foreach ($categories as $category)
     <li class="nav-item">
@@ -58,7 +59,7 @@
 </div>
 
 <div class="container-fluid">
-  <h2 class="mt-5">Bootstrap 4 Horizontal Scrolling</h2>
+  <h2 class="mt-5">Productos Destacados</h2>
   <div class="scrolling-wrapper row flex-row flex-nowrap">
     @foreach ($newProducts as $new)
       <div class="col-5">

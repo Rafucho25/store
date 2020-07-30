@@ -4,31 +4,30 @@
     <title>Busqueda</title>
 @endsection
 
-@section('header')
-    <link rel="stylesheet" href="css/search.css">
-@endsection
 
 @section('body')
 <div class="container">
-    @foreach ($list as $product)
-    <br> <br>
     <div class="row">
-        <div class="col-ms-4 logo">
-            <img src="{{$product->logo}}" width="250" height="200" alt="{{$product->name}}">
-        </div>
-        <div class="col-ms-8">
-            <a href="product/{{$product->id}}">{{$product->name}}</a>
-            <p class="condition">{{$product->condition}}</p>
-            <strong>Price: {{$product->price}} </strong>
-            <div class="row-reverse">
-                <div class="col-ms-10">
-                    <div class="float-right"><i class="far fa-heart text-danger" id="{{$product->id}}"></i></div>
-                    <div role="alert" id="result{{$product->id}}"></div>
+        @foreach ($list as $product)
+        <div class="col-md-4">
+            <div class="card">
+                <img class="card-img-top" src="{{$product->logo}}" width="250" height="200" alt="{{$product->name}}">
+                <div class="card-body">
+                    <a href="product/{{$product->id}}"><h4 class="card-title mb-3">{{$product->name}}</h4></a>
+                    <p class="condition">Condicion: {{$product->condition}}</p>
+                    <strong>Precio: {{$product->price}} </strong>
+                    <p class="card-text"> {{Str::substr($product->description, 0, 80)}}</p>
+                    <div class="row-reverse">
+                        <div class="col-ms-10">
+                            <div class="float-right"><i class="far fa-heart text-danger" id="{{$product->id}}"></i></div>
+                            <div role="alert" id="result{{$product->id}}"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+        @endforeach
     </div>
-    @endforeach
     <div class="row">
         {{ $list->appends(array('category' => $category, 'text' => $text))->render() }}
     </div>

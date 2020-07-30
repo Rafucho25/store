@@ -1,55 +1,111 @@
+<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Iniciar Sesion</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-</head>
-<body>
-    @if(session()->has('message'))
-        <div class="alert alert-danger" role="alert">
-            {{ session()->get('message') }}
-        </div>
-    @endif
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4 col-md-offset-5">
-                
-            </div>
-        </div>
-    </div>
 
-    <div class="container">
-        <div class="row h-100">
-            <div class="col-sm-12 my-auto">
-                <div class="card card-block w-25 mx-auto text-center">
-                    <div class="card-body">
-                        <h5 class="card-title">Iniciar Sesion</h5> <br>
-                        <form action="login" method="post">   
-                            @csrf
-                            <div class="form-group">
-                                <input type="email" required placeholder="Correo Electronico" class="form-control" name="email" id="email">
-                            </div> <br>
-                            <div class="form-group">
-                                <input type="password" required placeholder="Contraseña" class="form-control" name="password" id="password">
-                            </div> <br>
-                            <div class="form-group">
-                                <input type="checkbox"  class="form-control" name="remember" id="remember">Recordar Sesion
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="au theme template">
+    <meta name="author" content="Hau Nguyen">
+    <meta name="keywords" content="au theme template">
+
+    <!-- Title Page-->
+    <title>Login</title>
+
+    <!-- Fontfaces CSS-->
+    <link href="css/font-face.css" rel="stylesheet" media="all">
+    <link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <link href="vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
+    <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+
+    <!-- Bootstrap CSS-->
+    <link href="vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
+
+    <!-- Vendor CSS-->
+    <link href="vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
+    <link href="vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
+    <link href="vendor/wow/animate.css" rel="stylesheet" media="all">
+    <link href="vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
+    <link href="vendor/slick/slick.css" rel="stylesheet" media="all">
+    <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="css/theme.css" rel="stylesheet" media="all">
+
+</head>
+
+<body class="animsition">
+    <div class="page-wrapper">
+        <div class="page-content--bge5">
+                <div class="page-content--bge5">
+                    <div class="container">
+                        <div class="login-wrap">
+                            <div class="login-content">
+                                <div class="login-logo">
+                                    <a href="#">
+                                        <img src="{{asset('images/logo.png')}}" alt="CoolAdmin">
+                                    </a>
+                                </div>
+                                <div class="login-form">
+                                    <form action="login" method="post">
+                                        @csrf
+                                        <div class="form-group">
+                                            <label>Correo Electronico</label>
+                                            <input class="au-input au-input--full" type="email" name="email" placeholder="Correo Electronico">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Contraseña</label>
+                                            <input class="au-input au-input--full" type="password" name="password" placeholder="Contraseña">
+                                        </div>
+                                        <div class="login-checkbox">
+                                            <label>
+                                                <input type="checkbox" name="remember">Recordar Sesion
+                                            </label>
+                                            <!-- <label>
+                                                <a href="#">Olvido su contraseña?</a>
+                                            </label> -->
+                                        </div>
+                                        <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">Entrar</button>
+                                    </form>
+                                    <div class="register-link">
+                                        <p>
+                                            No tiene cuenta?
+                                            <a href="register">Crear cuenta aqui</a>
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
-                            <input type="submit" value="Entrar" class="btn btn-primary">
-                        </form>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
+	</div>
     </div>
+    <!-- Jquery JS-->
+    <script src="vendor/jquery-3.2.1.min.js"></script>
+    <!-- Bootstrap JS-->
+    <script src="vendor/bootstrap-4.1/popper.min.js"></script>
+    <script src="vendor/bootstrap-4.1/bootstrap.min.js"></script>
+    <!-- Vendor JS       -->
+    <script src="vendor/slick/slick.min.js">
+    </script>
+    <script src="vendor/wow/wow.min.js"></script>
+    <script src="vendor/animsition/animsition.min.js"></script>
+    <script src="vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
+    </script>
+    <script src="vendor/counter-up/jquery.waypoints.min.js"></script>
+    <script src="vendor/counter-up/jquery.counterup.min.js">
+    </script>
+    <script src="vendor/circle-progress/circle-progress.min.js"></script>
+    <script src="vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="vendor/chartjs/Chart.bundle.min.js"></script>
+    <script src="vendor/select2/select2.min.js">
+    </script>
 
-    <footer>
-        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-        @yield('footer')
-    </footer>
+    <!-- Main JS-->
+    <script src="js/main.js"></script>
+
 </body>
+
 </html>
+<!-- end document-->

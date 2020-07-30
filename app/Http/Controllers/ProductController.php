@@ -36,13 +36,13 @@ class ProductController extends Controller
             
             $listProducts = DB::table('products')
             ->where('name','REGEXP',$text)
-            ->paginate(10);
+            ->paginate(9);
         }else{
             
             $listProducts = DB::table('products')
             ->Where('category_id','=',$category)
             ->where('name','REGEXP',$text)
-            ->paginate(10);
+            ->paginate(9);
         }
         return view('search',['list' => $listProducts,'category' => $category, 'text' => $text]);
     }

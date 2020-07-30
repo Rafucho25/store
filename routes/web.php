@@ -25,11 +25,11 @@ Route::get('pdf','ProductController@print')->name('print');
 
 Route::get('/login', function () {
     return view('auth.login');
-});
+})->name('login');
 
 Route::get('/register', function () {
     return view('auth.register');
-});
+})->name('register');
 
 Route::get('/logout', 'UserController@logout')->name('logout');
 
