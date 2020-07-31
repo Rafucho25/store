@@ -463,6 +463,10 @@ section {
     background: #00a2e3;
 }
 
+.au-btn--red:hover {
+    background: #ad0202;
+}
+
 .au-btn--block {
     display: block;
     width: 100%;
@@ -475,6 +479,10 @@ section {
 
 .au-btn--blue {
     background: #4272d7;
+}
+
+.au-btn--red {
+    background: rgb(255, 0, 0);
 }
 
 .au-btn--green {

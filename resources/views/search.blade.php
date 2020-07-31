@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('title')
-    <title>Busqueda</title>
+    <title>Busqueda - Store</title>
 @endsection
 
 

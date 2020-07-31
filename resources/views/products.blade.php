@@ -8,34 +8,20 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-sm-4">
-      <div id="images" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner">
-          @foreach ($images as $image)
-          <div class="carousel-item active">
-            <img src=" {{$image->path}} " class="d-block w-100" alt="...">
-          </div>
-          @endforeach
-        </div>
-        <a class="carousel-control-prev" href="#images" role="button" data-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#images" role="button" data-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
-        </a>
-      </div>
+      <img src="{{$product->logo}}" width="300px" height="300px" alt="">
     </div>
     <div class="col-sm-8">
-      <p>{{$product->name}}</p>
-      <p>{{$product->description}}</p>
-      <h2><a href="{{route('store',$store->id)}}">{{$store->name}}</a></h2>
-      <p>{{$product->price}}</p>
-      <p>Cantidad disponible: {{$product->quantity}}</p>
+      <p><strong>Producto: &nbsp;</strong> {{$product->name}}</p> <br>
+      <p><strong>Descripcion: &nbsp;</strong> {{$product->description}}</p> <br>
+      <h2> <strong>Vendedor: &nbsp;</strong><a href="{{route('store',$store->id)}}">{{$store->name}}</a></h2> <br> <br>
+      <p> <strong>Precio RD: &nbsp;</strong>{{number_format($product->price,2)}}</p> <br>
+      <p><strong>Cantidad disponible:</strong> &nbsp; {{$product->quantity}}</p> <br>
       <input type="hidden" id="available" value="{{$product->quantity}}">
-      <label for="">Cantidad a comprar:</label>
+      <label for=""><strong>Cantidad a comprar:</strong> &nbsp;</label>
       <input type="text" name="quantity" id="quantity">
       <span id="errorQuantity"></span>
+      <button class="au-btn au-btn-icon au-btn--blue">
+          <i class="zmdi zmdi-plus"></i>Agregar al carrito</button>
       <input type="button" onclick="add()" id="add" value="Agregar al carrito">
       <div role="alert" id="result{{$product->id}}"></div>
     </div>

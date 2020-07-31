@@ -1,30 +1,41 @@
 @extends('layout')
 
+@section('title') <title>Lista de Deseos - Store</title> @endsection
+
 @section('body')
-    <div class="container">
-        @foreach ($wishList as $wish)
-        <br> <br>
-        <div class="row" id="{{$wish->id}}">
-            <div class="col-ms-4 logo">
-                <img src="{{$wish->logo}}" width="250" height="200" alt="{{$wish->name}}">
-            </div>
-            <div class="col-ms-8">
-                <a href="product/{{$wish->product_id}}">{{$wish->name}}</a>
-                <p class="condition">{{$wish->condition}}</p>
-                <strong>Price: {{$wish->price}} </strong>
-                <div class="row-reverse">
-                    <div class="float-right"><i class="fas fa-times text-danger" id="{{$wish->id}}"></i></div>
-                    <div role="alert" id="result{{$wish->id}}"></div>
+    <div class="section__content section__content--p30">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="overview-wrap">
+                        <h2 class="title-1">Lista de Deseos</h2>
+                    </div>
                 </div>
             </div>
+            <div class="row">
+                @foreach ($wishList as $wish)
+                    <div id="{{$wish->id}}">
+                        <div class="col-md-4">  <br> <br>
+                            <img src="{{$wish->logo}}" width="200px" height="200px" alt="">
+                        </div>
+                        <div class="col-md-8">
+                            <p><strong>Producto: &nbsp;</strong> {{$wish->name}}</p> <br>
+                            <p><strong>Descripcion: &nbsp;</strong> {{$wish->description}}</p> <br>
+                            <p> <strong>Precio RD: &nbsp;</strong>{{number_format($wish->price,2)}}</p> <br>
+                            <div class="row-reverse">
+                                <button id="{{$wish->id}}" class="au-btn au-btn-icon au-btn--red">Eliminar de la Lista</button>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
         </div>
-        @endforeach
     </div>
 @endsection
 
 @section('footer')
         <script>
-            $('.fa-times').click(function() {
+            $('.au-btn--red').click(function() {
                 id = event.target.id;
                 $.ajax({
                     type: "get",

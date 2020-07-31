@@ -11,6 +11,11 @@
     padding-top: 30px;
     padding-bottom: 70px;	
   }
+
+  
+  .clicker {
+    cursor: pointer;
+  }
   </style>
 @endsection
 
@@ -43,18 +48,50 @@
 </div>
 
 <center> <h2>Productos por Categorias</h2> </center>
-<ul class="nav nav" id="categories">
-  @foreach ($categories as $category)
-    <li class="nav-item">
-      <a class="nav-link" id="{{$category->id}}tab" data-toggle="tab" href="#category{{$category->id}}" role="tab" aria-controls="category{{$category->id}}">
-        <img src="{{$category->logo}}" alt="{{$category->description}}" width="70px" height="70px">
-      </a>
-    </li>
-  @endforeach
-</ul>
+<center>
+  <ul class="nav nav" id="categories">
+    <div class="row">
+        @foreach ($categories as $category)
+        <div class="col-ms-2">
+          <li class="nav-item">
+            <a class="nav-link" id="{{$category->id}}tab" data-toggle="tab" href="#category{{$category->id}}" role="tab" aria-controls="category{{$category->id}}">
+              <img src="{{$category->logo}}" alt="{{$category->description}}" width="70px" height="70px">
+            </a>
+          </li>
+        </div>
+      @endforeach
+    </div>
+  </ul>
+</center>
 <div class="tab-content" id="categoriesContent">
   @foreach ($categories as $category)
-    <div class="tab-pane fade {{$category->id == 1 ? 'show active' : ''}} " id="category{{$category->id}}" role="tabpanel" aria-labelledby="{{$category->id}}tab">{{$category->description}}</div>
+    <div class="tab-pane fade {{$category->id == 1 ? 'show active' : ''}} " id="category{{$category->id}}" role="tabpanel" aria-labelledby="{{$category->id}}tab">
+      <div class="container">
+        <div class="row">
+            @foreach ($products as $product)
+            @if ($product->category_id == $category->id)
+            <div class="col-md-4">
+              <div class="card">
+                  <img class="card-img-top" src="{{$product->logo}}" width="250" height="200" alt="{{$product->name}}">
+                  <div class="card-body">
+                      <a href="product/{{$product->id}}"><h4 class="card-title mb-3">{{$product->name}}</h4></a>
+                      <p class="condition">Condicion: {{$product->condition}}</p>
+                      <strong>Precio: {{$product->price}} </strong>
+                      <p class="card-text"> {{Str::substr($product->description, 0, 80)}}</p>
+                      <div class="row-reverse">
+                          <div class="col-ms-10">
+                              <div class="float-right"><i class="far fa-heart text-danger" id="{{$product->id}}"></i></div>
+                              <div role="alert" id="result{{$product->id}}"></div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+            @endif
+            @endforeach
+        </div>
+      </div>
+    </div>
   @endforeach
 </div>
 
@@ -62,17 +99,16 @@
   <h2 class="mt-5">Productos Destacados</h2>
   <div class="scrolling-wrapper row flex-row flex-nowrap">
     @foreach ($newProducts as $new)
-      <div class="col-5">
+      <div class="col-5 clicker" onclick="location.href='/product/{{$new->id}}';">
         <div class="card mb-3" style="max-width: 540px;">
           <div class="row no-gutters">
             <div class="col-md-4">
-              <img src="https://via.placeholder.com/58x60" class="d-block w-100" alt="...">
+              <img src="{{asset($new->logo)}}" width="60" height="58" class="d-block w-100">
             </div>
             <div class="col-md-8">
               <div class="card-body">
                 <h5 class="card-title"> {{$new->name}} </h5>
                 <p class="card-text"> {{Str::substr($new->description,0,100)}} ... </p>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
               </div>
             </div>
           </div>

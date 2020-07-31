@@ -56,7 +56,7 @@
                 <div class="container-fluid">
                     <div class="header-wrap">
                         <form class="form-header" action="{{route('search')}}" method="get">
-                            <input class="au-input au-input--xl" type="text" name="search" placeholder="Buscar Productos" />
+                            <input class="au-input au-input--xl" type="text" name="text" placeholder="Buscar Productos" />
                             <select class="form-control" name="category" id="category">
                                 <option value="" selected>Todas</option>
                                 @foreach ($categories as $category)
@@ -98,11 +98,11 @@
                                             </div>
                                             <div class="account-dropdown__item">
                                                 <a href="{{route('user.wishlist')}}">
-                                                    <i class="zmdi zmdi-settings"></i>Lista de Deseos</a>
+                                                    <i class="zmdi zmdi-label-heart"></i>Lista de Deseos</a>
                                             </div>
                                             <div class="account-dropdown__item">
                                                 <a href="{{route('user.cart')}}">
-                                                    <i class="zmdi zmdi-settings"></i>Carrito de Compra</a>
+                                                    <i class="zmdi zmdi-shopping-cart"></i>Carrito de Compra</a>
                                             </div>
                                             <div class="account-dropdown__item">
                                                 <a href="{{route('user.orders')}}">

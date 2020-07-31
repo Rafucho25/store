@@ -15,7 +15,7 @@ class WishListController extends Controller
         $wishList = DB::table('wishlists')
         ->where('user_id',Sentinel::getUser()->id)
         ->join('products','products.id','product_id')
-        ->selectRaw("wishlists.id as id, logo, name, price, product_id, `condition`")
+        ->selectRaw("wishlists.id as id, logo, name, price, product_id, `condition`, products.description as description")
         ->get();
         /*$wishList = WishList::find(1)->product; */
         return view('user.wishlist',compact('wishList'));
