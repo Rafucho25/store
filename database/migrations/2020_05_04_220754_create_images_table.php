@@ -21,7 +21,7 @@ class CreateImagesTable extends Migration
         });
 
         Schema::table('images', function($table) {
-            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
+            $table->foreign('product_id')->references('id')->on('products');
         });
     }
 

@@ -8,7 +8,11 @@
             "name": "Listen for XDebug",
             "type": "php",
             "request": "launch",
-            "port": 9000
+            "port": 9090,
+            "ignore": [
+                "**/vendor/**/*.php",
+                "/var/www/*"
+            ]
         },
         {
             "name": "Launch currently open script",

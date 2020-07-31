@@ -11,7 +11,7 @@ class WelcomeController extends Controller
     {
         $categories = DB::table('categories')->get();
         $products = DB::table('products')->get();
-        $newProducts = DB::table('products')->orderBy('created_at', 'desc')->take(10)->get();
+        $newProducts = DB::table('products')->orderBy('created_at', 'desc')->take(3)->get();
         //return view('welcome',['categories' => $categories, 'products' => $products, 'newProducts' => $newProducts]);
         return view('welcome', compact('categories', 'products', 'newProducts'));
     }

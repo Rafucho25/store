@@ -23,7 +23,7 @@ class CreateStoreTable extends Migration
         });
 
         Schema::table('stores', function($table) {
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users');
         });
 
     }

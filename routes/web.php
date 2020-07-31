@@ -16,15 +16,20 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'WelcomeController');
 
+
+Route::get('/test', function(){
+    return view('test');
+});
+
 Route::get('pdf','ProductController@print')->name('print');
 
 Route::get('/login', function () {
     return view('auth.login');
-});
+})->name('login');
 
 Route::get('/register', function () {
     return view('auth.register');
-});
+})->name('register');
 
 Route::get('/logout', 'UserController@logout')->name('logout');
 
@@ -56,9 +61,11 @@ Route::group(['middleware' => 'user','as'=>'user.'], function () {
     Route::get('create', 'OrderController@create')->name('createOrder');
     Route::get('orders', 'OrderController@listOrders')->name('orders');
     Route::get('orderdetail/{id}', 'OrderController@orderDetail')->name('orderdetail');
+    
+    Route::get('order/email', 'OrderController@send')->name('order.email');
 
     
-    Route::group(['middleware' => 'seller','as'=>'seller.'], function () {
+    Route::group(['middleware' => 'seller','as'=>'seller.'/*, 'prefix' => 'seller'*/], function () {
         Route::get('/dashboard/store', 'StoreController@manage')->name('store.index');
         Route::post('/store/update/{id}', 'StoreController@update')->name('store.update');
         Route::get('/store/product/create', 'ProductController@productCreate')->name('product.create');
@@ -66,8 +73,11 @@ Route::group(['middleware' => 'user','as'=>'user.'], function () {
         Route::get('/store/product/edit/{id}', 'ProductController@productEdit')->name('product.edit');
         Route::post('/store/product/update/{id}', 'ProductController@productUpdate')->name('product.update');
         Route::get('/store/product/delete/{id}', 'ProductController@productDelete')->name('product.delete');
-        
         Route::get('/store/orders', 'OrderController@listStoreOrders')->name('orders');
     });
     
+
+    Route::fallback(function () {
+        return 'Fallo';
+    });
 });

@@ -13,7 +13,7 @@ class ShoppingCartController extends Controller
         $cart = DB::table('shoppingcart')
         ->where('user_id',Sentinel::getUser()->id)
         ->join('products','products.id','product_id')
-        ->selectRaw("shoppingcart.id as id, shoppingcart.quantity as quantity, logo, name, price, product_id, `condition`")
+        ->selectRaw("shoppingcart.id as id, shoppingcart.quantity as quantity, logo, name, price, product_id, `condition`, description")
         ->get();
         return view('cart',compact('cart'));
     }

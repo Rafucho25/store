@@ -1,0 +1,17 @@
+.logo{
+    margin-right: 20px
+}
+
+a {
+    color: black;
+    font-size: larger !important;
+}
+
+a:hover{ 
+    color: rgb(75, 114, 243);
+    text-decoration: none;
+}
+
+p.condition{
+    font-size: 12px;
+}

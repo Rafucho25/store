@@ -21,6 +21,12 @@ class ProductController extends Controller
         $store = Store::find($product->store_id);
         return view('products',compact('product', 'images','store'));
     }
+
+    public function indexapi()
+    {
+        $product = Product::all();
+        return $product;
+    }
     
     public function search(Request $request){
         $category = $request->category; 
@@ -30,13 +36,13 @@ class ProductController extends Controller
             
             $listProducts = DB::table('products')
             ->where('name','REGEXP',$text)
-            ->paginate(10);
+            ->paginate(9);
         }else{
             
             $listProducts = DB::table('products')
             ->Where('category_id','=',$category)
             ->where('name','REGEXP',$text)
-            ->paginate(10);
+            ->paginate(9);
         }
         return view('search',['list' => $listProducts,'category' => $category, 'text' => $text]);
     }
