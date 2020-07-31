@@ -12,7 +12,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row"> <hr>
                 @foreach ($wishList as $wish)
                     <div id="{{$wish->id}}">
                         <div class="col-md-4">  <br> <br>
@@ -26,7 +26,7 @@
                                 <button id="{{$wish->id}}" class="au-btn au-btn-icon au-btn--red">Eliminar de la Lista</button>
                             </div>
                         </div>
-                    </div>
+                    </div> <hr>
                 @endforeach
             </div>
         </div>

@@ -41,7 +41,6 @@ Route::get('product/{id}','ProductController@index');
 
 Route::get('/search', 'ProductController@search')->name('search');
 
-
 Route::get('/store/{id}', 'StoreController@index')->name('store');
 
 Route::group(['middleware' => 'user','as'=>'user.'], function () {

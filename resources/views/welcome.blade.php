@@ -59,6 +59,7 @@
             </a>
           </li>
         </div>
+        <br>
       @endforeach
     </div>
   </ul>
@@ -68,6 +69,7 @@
     <div class="tab-pane fade {{$category->id == 1 ? 'show active' : ''}} " id="category{{$category->id}}" role="tabpanel" aria-labelledby="{{$category->id}}tab">
       <div class="container">
         <div class="row">
+          <br>
             @foreach ($products as $product)
             @if ($product->category_id == $category->id)
             <div class="col-md-4">

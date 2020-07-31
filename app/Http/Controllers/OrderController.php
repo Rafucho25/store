@@ -9,6 +9,7 @@ use Mail;
 use Sentinel;
 use App\Model\Order;
 use App\Model\Orderdetail;
+use App\Model\Shoppingcart;
 
 class OrderController extends Controller
 {
@@ -58,6 +59,9 @@ class OrderController extends Controller
             $orderDetail->condition = $item->condition;
             $orderDetail->save();
         }
+
+        /*Elimino del carrito*/
+        $cart = Shoppingcart::where('user_id', Sentinel::getUser()->id)->delete();
 
         return redirect('/')->with('messageSuccess','Orden creada Satisfactoriamente');
     }

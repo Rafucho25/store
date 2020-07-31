@@ -38,6 +38,12 @@
                                     </div>
                                     <!--TODO: Revisar el boton guardar cuando el input foto esta vacio -->
                                     <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">Guardar Cambios</button>
+
+                                    @if(Sentinel::inRole('seller'))
+                                    <a href="{{route('user.seller.store.index')}}" class="au-btn au-btn--block au-btn--blue m-b-20">Administrar mi tienda</a>
+                                    @else
+                                    <a href="{{route('user.activateSeller')}}" class="au-btn au-btn--block au-btn--blue m-b-20" >Conviertete en vendedor</a>
+                                    @endif
                             </div>
 
                             {!! Form::close() !!}
@@ -47,12 +53,6 @@
             </div>
         </div>
     </div>
-
-    @if(Sentinel::inRole('seller'))
-    <a href="{{route('user.seller.store.index')}}">Administrar mi tienda</a>
-    @else
-    <a href="{{route('user.activateSeller')}}">Conviertete en vendedor</a>
-    @endif
 
 @endsection
 

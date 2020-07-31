@@ -13,15 +13,16 @@ class StoreController extends Controller
 {
     public function index($id){
         $store = Store::find($id);
-        $products = DB::table('products')->where('store_id', $store->id)->get();
-        $orders = DB::table('orders')
+        $products = DB::table('products')->where('store_id', $store->id)->paginate(9);
+        /*$orders = DB::table('orders')
         ->where('store_id',$store)
-        ->paginate(10);
+        ->paginate(9);
         $orderDetail = DB::table('orderdetails')
         ->whereIn('order_id',$orders->pluck('id')->toArray())
-        ->get();
+        ->get();*/
 
-        return view('store',compact('store', 'products','orders','orderDetail'));
+        //return view('store',compact('store', 'products','orders','orderDetail'));
+        return view('store',['products' => $products, 'store' => $store]);
     }
 
     public function manage(){
@@ -50,8 +51,8 @@ class StoreController extends Controller
             $safeName = 'store_no_' . $store->id . '.' . $extension;
             $file->move($destinationPath, $safeName);
             $data['photo'] = url('/').'/images/store/'.$safeName;
+            $store->logo = $data['photo'];
         }
-        $store->logo = $data['photo'];
         $store->fill($data);
         $store->save();
 

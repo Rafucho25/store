@@ -35,7 +35,7 @@
 
 <div class="form-group">
     {{ Form::label('condition', 'Condicion')}}
-    {{ Form::select('condition', array('Nuevo' => 'Nuevo', 'Usado' => 'Usado', 'Refublished' => 'Refublished', 'Dañado' => 'Dañado'), null, ['class' => 'au-input au-input--full',  "placeholder" => "Condicion"] )}}
+    {{ Form::select('condition', array('Nuevo' => 'Nuevo', 'Usado' => 'Usado', 'Refublished' => 'Refublished', 'Dañado' => 'Dañado'), 'Nuevo', ['class' => 'au-input au-input--full',  "placeholder" => "Condicion"] )}}
 </div>
 
 <!--TODO: Revisar el boton guardar cuando el input foto esta vacio -->

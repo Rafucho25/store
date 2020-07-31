@@ -40,108 +40,210 @@
 
 <body>
   @include('messages')
-    <div class="page-container">
-        <!-- MENU SIDEBAR-->
-        <aside class="menu-sidebar d-none d-lg-block">
-            <div class="logo">
+    <div class="">
+        <!-- HEADER DESKTOP-->
+<header class="header-desktop3 d-none d-lg-block">
+    <div class="section__content section__content--p35">
+        <div class="header3-wrap">
+            <div class="header__logo">
                 <a href="/">
-                    <img src="{{asset('images/logo.png')}}" alt="Cool Admin" />
+                    <img src="{{asset('images/logo.jpg')}}" height="40px" width="150px" alt="Store" />
                 </a>
             </div>
-        </aside>
-        <!-- END MENU SIDEBAR-->
-        <!-- HEADER DESKTOP-->
-        <header class="header-desktop">
-            <div class="section__content section__content--p30">
-                <div class="container-fluid">
-                    <div class="header-wrap">
-                        <form class="form-header" action="{{route('search')}}" method="get">
-                            <input class="au-input au-input--xl" type="text" name="text" placeholder="Buscar Productos" />
-                            <select class="form-control" name="category" id="category">
-                                <option value="" selected>Todas</option>
-                                @foreach ($categories as $category)
-                                <option value="{{$category->id}}">{{$category->description}}</option>
-                                @endforeach
-                            </select>
-                            <button class="au-btn--submit" type="submit">
-                                <i class="zmdi zmdi-search"></i>
-                            </button>
-                        </form>
-                        <div class="header-button">
-                            <div class="account-wrap">
-                                @if (Sentinel::check())
-                                <div class="account-item clearfix js-item-menu">
-                                    <div class="image">
+            <form class="form-header" action="{{route('search')}}" method="get">
+                <input class="au-input au-input--xl" type="text" name="text" placeholder="Buscar Productos" />
+                <select class="form-control" name="category" id="category">
+                    <option value="" selected>Todas</option>
+                    @foreach ($categories as $category)
+                    <option value="{{$category->id}}">{{$category->description}}</option>
+                    @endforeach
+                </select>
+                <button class="au-btn--submit" type="submit">
+                    <i class="zmdi zmdi-search"></i>
+                </button>
+            </form>
+            <div class="header__tool">
+                <div class="account-wrap">
+                    @if (Sentinel::check())
+                    <div class="account-item account-item--style2 clearfix js-item-menu">
+                        <div class="image">
+                            <img src="{{asset(Sentinel::getUser()->photo)}}" alt="John Doe" />
+                        </div>
+                        <div class="content">
+                            <a class="js-acc-btn" href="#">{{Sentinel::getUser()->first_name}}</a>
+                        </div>
+                        <div class="account-dropdown js-dropdown">
+                            <div class="info clearfix">
+                                <div class="image">
+                                    <a href="#">
                                         <img src="{{asset(Sentinel::getUser()->photo)}}" alt="John Doe" />
-                                    </div>
-                                    <div class="content">
-                                        <a class="js-acc-btn" href="#">{{Sentinel::getUser()->first_name}}</a>
-                                    </div>
-                                    <div class="account-dropdown js-dropdown">
-                                        <div class="info clearfix">
-                                            <div class="image">
-                                                <a href="#">
-                                                    <img src="{{asset(Sentinel::getUser()->photo)}}" alt="John Doe" />
-                                                </a>
-                                            </div>
-                                            <div class="content">
-                                                <h5 class="name">
-                                                    <a href="#">{{Sentinel::getUser()->first_name }} {{Sentinel::getUser()->last_name}}</a>
-                                                </h5>
-                                                <span class="email">{{Sentinel::getUser()->email}}</span>
-                                            </div>
-                                        </div>
-                                        <div class="account-dropdown__body">
-                                            <div class="account-dropdown__item">
-                                                <a href="{{ route('user.profile')}}">
-                                                    <i class="zmdi zmdi-account"></i>Mi cuenta</a>
-                                            </div>
-                                            <div class="account-dropdown__item">
-                                                <a href="{{route('user.wishlist')}}">
-                                                    <i class="zmdi zmdi-label-heart"></i>Lista de Deseos</a>
-                                            </div>
-                                            <div class="account-dropdown__item">
-                                                <a href="{{route('user.cart')}}">
-                                                    <i class="zmdi zmdi-shopping-cart"></i>Carrito de Compra</a>
-                                            </div>
-                                            <div class="account-dropdown__item">
-                                                <a href="{{route('user.orders')}}">
-                                                    <i class="zmdi zmdi-money-box"></i>Ordenes</a>
-                                            </div>
-                                        </div>
-                                        <div class="account-dropdown__footer">
-                                            <a href="{{ route('logout')}}">
-                                                <i class="zmdi zmdi-power"></i>Cerrar Sesion</a>
-                                        </div>
-                                    </div>
+                                    </a>
                                 </div>
-                                @else
-                                <div class="account-item clearfix js-item-menu">
-                                    <div class="image">
-                                        <a href="{{route('login')}}">
-                                            <img src="{{asset('images/users/template.png')}}" alt="User" />
-                                        </a>
-                                    </div>
-                                    <div class="account-dropdown js-dropdown">
-                                        <div class="account-dropdown__body">
-                                            <div class="account-dropdown__item">
-                                                <a href="{{route('login')}}">
-                                                    <i class="zmdi zmdi-account"></i>Iniciar Sesion</a>
-                                            </div>
-                                            <div class="account-dropdown__item">
-                                                <a href="{{route('register')}}">
-                                                    <i class="zmdi zmdi-settings"></i>Registrarse</a>
-                                            </div>
-                                        </div>
-                                    </div>
+                                <div class="content">
+                                    <h5 class="name">
+                                        <a href="#">{{Sentinel::getUser()->first_name }} {{Sentinel::getUser()->last_name}}</a>
+                                    </h5>
+                                    <span class="email">{{Sentinel::getUser()->email}}</span>
                                 </div>
-                                @endif
                             </div>
+                            <div class="account-dropdown__body">
+                                <div class="account-dropdown__item">
+                                    <a href="{{ route('user.profile')}}">
+                                        <i class="zmdi zmdi-account"></i>Mi cuenta</a>
+                                </div>
+                                <div class="account-dropdown__item">
+                                    <a href="{{route('user.wishlist')}}">
+                                        <i class="zmdi zmdi-label-heart"></i>Lista de Deseos</a>
+                                </div>
+                                <div class="account-dropdown__item">
+                                    <a href="{{route('user.cart')}}">
+                                        <i class="zmdi zmdi-shopping-cart"></i>Carrito de Compra</a>
+                                </div>
+                                <div class="account-dropdown__item">
+                                    <a href="{{route('user.orders')}}">
+                                        <i class="zmdi zmdi-money-box"></i>Ordenes</a>
+                                </div>
+                            </div>
+                            <div class="account-dropdown__footer">
+                                <a href="{{ route('logout')}}">
+                                    <i class="zmdi zmdi-power"></i>Cerrar Sesion</a>
+                            </div>
+                        </div>
+                    </div>
+                    @else
+                    <div class="account-item clearfix js-item-menu">
+                        <div class="image">
+                            <a href="{{route('login')}}">
+                                <img src="{{asset('images/users/template.png')}}" alt="User" />
+                            </a>
+                        </div>
+                        <div class="account-dropdown js-dropdown">
+                            <div class="account-dropdown__body">
+                                <div class="account-dropdown__item">
+                                    <a href="{{route('login')}}">
+                                        <i class="zmdi zmdi-account"></i>Iniciar Sesion</a>
+                                </div>
+                                <div class="account-dropdown__item">
+                                    <a href="{{route('register')}}">
+                                        <i class="zmdi zmdi-settings"></i>Registrarse</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @endif
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- END HEADER DESKTOP-->
+
+<!-- HEADER MOBILE-->
+<header class="header-mobile header-mobile-2 d-block d-lg-none">
+    <div class="header-mobile__bar">
+        <div class="container-fluid">
+            <div class="header-mobile-inner">
+                <a class="logo" href="index.html">
+                    <img src="images/icon/logo-white.png" alt="CoolAdmin" />
+                </a>
+                <button class="hamburger hamburger--slider" type="button">
+                    <span class="hamburger-box">
+                        <span class="hamburger-inner"></span>
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <nav class="navbar-mobile">
+        <div class="container-fluid">
+            <form class="form-header" action="{{route('search')}}" method="get">
+                <input class="au-input au-input--xl" type="text" name="text" placeholder="Buscar Productos" />
+                <select class="form-control" name="category" id="category">
+                    <option value="" selected>Todas</option>
+                    @foreach ($categories as $category)
+                    <option value="{{$category->id}}">{{$category->description}}</option>
+                    @endforeach
+                </select>
+                <button class="au-btn--submit" type="submit">
+                    <i class="zmdi zmdi-search"></i>
+                </button>
+            </form>
+        </div>
+    </nav>
+</header>
+<div class="sub-header-mobile-2 d-block d-lg-none">
+    <div class="header__tool">
+        <div class="account-wrap">
+            @if (Sentinel::check())
+            <div class="account-item account-item--style2 clearfix js-item-menu">
+                <div class="image">
+                    <img src="{{asset(Sentinel::getUser()->photo)}}" alt="John Doe" />
+                </div>
+                <div class="content">
+                    <a class="js-acc-btn" href="#">{{Sentinel::getUser()->first_name}}</a>
+                </div>
+                <div class="account-dropdown js-dropdown">
+                    <div class="info clearfix">
+                        <div class="image">
+                            <a href="#">
+                                <img src="{{asset(Sentinel::getUser()->photo)}}" alt="John Doe" />
+                            </a>
+                        </div>
+                        <div class="content">
+                            <h5 class="name">
+                                <a href="#">{{Sentinel::getUser()->first_name }} {{Sentinel::getUser()->last_name}}</a>
+                            </h5>
+                            <span class="email">{{Sentinel::getUser()->email}}</span>
+                        </div>
+                    </div>
+                    <div class="account-dropdown__body">
+                        <div class="account-dropdown__item">
+                            <a href="{{ route('user.profile')}}">
+                                <i class="zmdi zmdi-account"></i>Mi cuenta</a>
+                        </div>
+                        <div class="account-dropdown__item">
+                            <a href="{{route('user.wishlist')}}">
+                                <i class="zmdi zmdi-label-heart"></i>Lista de Deseos</a>
+                        </div>
+                        <div class="account-dropdown__item">
+                            <a href="{{route('user.cart')}}">
+                                <i class="zmdi zmdi-shopping-cart"></i>Carrito de Compra</a>
+                        </div>
+                        <div class="account-dropdown__item">
+                            <a href="{{route('user.orders')}}">
+                                <i class="zmdi zmdi-money-box"></i>Ordenes</a>
+                        </div>
+                    </div>
+                    <div class="account-dropdown__footer">
+                        <a href="{{ route('logout')}}">
+                            <i class="zmdi zmdi-power"></i>Cerrar Sesion</a>
+                    </div>
+                </div>
+            </div>
+            @else
+            <div class="account-item clearfix js-item-menu">
+                <div class="image">
+                    <a href="{{route('login')}}">
+                        <img src="{{asset('images/users/template.png')}}" alt="User" />
+                    </a>
+                </div>
+                <div class="account-dropdown js-dropdown">
+                    <div class="account-dropdown__body">
+                        <div class="account-dropdown__item">
+                            <a href="{{route('login')}}">
+                                <i class="zmdi zmdi-account"></i>Iniciar Sesion</a>
+                        </div>
+                        <div class="account-dropdown__item">
+                            <a href="{{route('register')}}">
+                                <i class="zmdi zmdi-settings"></i>Registrarse</a>
                         </div>
                     </div>
                 </div>
             </div>
-        </header>
+            @endif
+        </div>
+    </div>
+</div>
     </div>
     <div class="main-content">
         <div class="section__content section__content--p30">

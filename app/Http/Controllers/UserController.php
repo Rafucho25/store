@@ -8,6 +8,7 @@ use DB;
 use File;
 
 use App\Model\User;
+use App\Model\Store;
 
 class UserController extends Controller
 {
@@ -64,8 +65,8 @@ class UserController extends Controller
             $safeName = 'user_no_' . $user->id . '.' . $extension;
             $file->move($destinationPath, $safeName);
             $data['photo'] = url('/').'/images/users/'.$safeName;
+            $user->photo = $data['photo'];
         }
-        $user->photo = $data['photo'];
         $user->fill($data);
         $user->save();
 
@@ -77,6 +78,13 @@ class UserController extends Controller
         $user = Sentinel::getUser();
         $role = Sentinel::findRoleByName('seller');
         $role->users()->attach($user);
+
+        $store = new Store();
+        $store->name = 'Store ' . $user->first_name;
+        $store->description = 'New Store';
+        $store->logo = '/images/store/template.png';
+        $store->user_id = $user->id;
+        $store->save();
 
         return redirect()->back()->with('messageSuccess', 'Usuario convertido a vendedor correctamente');
     }

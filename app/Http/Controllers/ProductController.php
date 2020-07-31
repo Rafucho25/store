@@ -67,8 +67,8 @@ class ProductController extends Controller
             $safeName = 'product_no_' . $product->id . '.' . $extension;
             $file->move($destinationPath, $safeName);
             $data['logo'] = url('/').'/images/products/'.$safeName;
+            $product->logo = $data['logo'];
         }
-        $product->logo = $data['logo'];
         $product->fill($data);
         $product->save();
     }
@@ -91,8 +91,8 @@ class ProductController extends Controller
             $safeName = 'product_no_' . $product->id . '.' . $extension;
             $file->move($destinationPath, $safeName);
             $data['logo'] = url('/').'/images/products/'.$safeName;
+            $product->logo = $data['logo'];
         }
-        $product->logo = $data['logo'];
         $product->fill($data);
         $product->save();
 
