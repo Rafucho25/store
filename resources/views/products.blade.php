@@ -20,9 +20,8 @@
       <label for=""><strong>Cantidad a comprar:</strong> &nbsp;</label>
       <input type="text" name="quantity" id="quantity">
       <span id="errorQuantity"></span>
-      <button class="au-btn au-btn-icon au-btn--blue">
-          <i class="zmdi zmdi-plus"></i>Agregar al carrito</button>
-      <input type="button" onclick="add()" id="add" value="Agregar al carrito">
+      <button onclick="add()" class="au-btn au-btn-icon au-btn--blue">
+          <i onclick="add()" class="zmdi zmdi-plus"></i>Agregar al carrito</button>
       <div role="alert" id="result{{$product->id}}"></div>
     </div>
   </div>

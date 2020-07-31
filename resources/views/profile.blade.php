@@ -15,7 +15,6 @@
                             <hr>
                             {!! Form::model($user, ['route' => ['user.update', collect($user)->first() ], 'method' => 'post' , 'enctype'=>'multipart/form-data']) !!}
                             <div class="login-form">
-                                <form action="register" method="post">
                                     @csrf
                                     <div class="form-group">
                                         <center><img id="imgUser" src="{{isset($user->photo) ? $user->photo : asset('/images/users/template.png')}}" width="200px" height="200px" alt="your image" /></center><br>
@@ -39,7 +38,6 @@
                                     </div>
                                     <!--TODO: Revisar el boton guardar cuando el input foto esta vacio -->
                                     <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">Guardar Cambios</button>
-                                </form>
                             </div>
 
                             {!! Form::close() !!}

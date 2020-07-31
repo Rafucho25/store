@@ -1,20 +1,34 @@
 @extends('layout')
 
-@section('body')
-    <div class="container">
-        <div class="row">
-            {!! Form::model($product, ['route' => ['user.seller.product.update', collect($product)->first() ], 'method' => 'post' , 'enctype'=>'multipart/form-data']) !!}
-    
-            @include('product.field')
-    
-            {{Form::submit('Click Me!')}}
-                
-            {!! Form::close() !!}
+@section('title') <title>Editar Producto {{$product->name}} - Store</title> @endsection
 
-            
-            <a class="btn btn-danger"  data-toggle="modal" data-target="#deleteModal">Eliminar</a>
-        </div>
-    </div>
+@section('body')
+    <div class="section__content section__content--p30">
+      <div class="container-fluid">
+          <div class="row">
+              <div class="col-lg-6">
+                  <div class="card">
+                      <div class="card-body">
+                          <div class="card-title">
+                              <h3 class="text-center title-2">Datos Generales</h3>
+                          </div>
+                          <hr>
+                          <div class="login-form">
+                            {!! Form::model($product, ['route' => ['user.seller.product.update', collect($product)->first() ], 'method' => 'post' , 'enctype'=>'multipart/form-data']) !!}
+                                  @csrf
+
+                                  @include('product.field')
+
+                                  <button type="button" class="au-btn au-btn--block au-btn--red" data-toggle="modal" data-target="#deleteModal">Eliminar</button>
+                                  
+                              {!! Form::close() !!}
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
 @endsection
 
 <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

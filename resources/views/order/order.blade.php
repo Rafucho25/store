@@ -21,9 +21,7 @@
                         <td>{{$order->amount}}</td>
                         <td>
                             <div class="table-data-feature">
-                                <button onclick="location.href='{{route('user.orderdetail',$order->id)}};" class="item" data-toggle="tooltip" data-placement="top" title="Detalles">
-                                    <i class="zmdi zmdi-eye"></i>
-                                </button>
+                                <a href="{{route('user.orderdetail',$order->id)}}" class="au-btn au-btn-icon au-btn--blue">Ver Detalles</a>
                             </div>
                         </td>
                     </tr>

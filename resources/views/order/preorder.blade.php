@@ -4,28 +4,35 @@
 
 @section('body')
 
-    <h3>Datos personales</h3>
-    <p> Nombres: {{Sentinel::getUser()->first_name}}</p>
-    <p> Apellidos: {{Sentinel::getUser()->last_name}}</p>
-    <p> Direccion: {{Sentinel::getUser()->address}}</p>
-    
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-4">
+            <h3> Datos personales </h3> <br>
+            <p> <strong> Nombres: &nbsp;</strong>{{Sentinel::getUser()->first_name}}</p>
+            <p> <strong> Apellidos: &nbsp;</strong>{{Sentinel::getUser()->last_name}}</p>
+            <p> <strong> Direccion: &nbsp;</strong>{{Sentinel::getUser()->address}}</p>
+        </div>
+    </div>
+    <hr> <br>
     @foreach ($products as $productCart)
         @php
             $quantity = DB::table('products')->where('id',$productCart->product_id)->value('quantity');
-        @endphp
-        <br> <br>
-        <div class="row product" id="{{$productCart->id}}">
-            <div class="col-ms-4 logo">
-                <img src="{{$productCart->logo}}" width="250" height="200" alt="{{$productCart->name}}">
+        @endphp        
+        <div class="row">
+            <div class="col-sm-4">
+            <img src="{{$productCart->logo}}" width="250px" height="250px" alt="">
             </div>
-            <div class="col-ms-6">
-                <a href="productCart/{{$productCart->product_id}}">{{$productCart->name}}</a>
-                <p class="condition">{{$productCart->condition}}</p>
-                <strong>Price: {{$productCart->price}} </strong>
-                    <p>Cantidad: {{$productCart->quantity}}</p>
+            <div class="col-sm-8">
+            <p><strong>Producto: &nbsp;</strong>  <a href="product/{{$productCart->product_id}}">{{$productCart->name}} </a></p> <br>
+            <p class="condition"> <strong> Condicion: &nbsp;</strong>  {{$productCart->condition}} </p> <br>
+            <p> <strong>Precio RD: &nbsp;</strong>{{number_format($productCart->price,2)}}</p> <br>
+            <p> <strong>Cantidad: &nbsp;</strong>{{$productCart->quantity}}</p> <br>
             </div>
-        </div>
+        </div> <hr>
     @endforeach
-
-    <a href=" {{route('user.createOrder')}} " class="btn btn-primary">Finalizar</a>
+    <div class="row-reverse"> <br>
+        <a href=" {{route('user.createOrder')}} " class="au-btn au-btn-icon au-btn--blue">Finalizar</a>
+    </div>
+</div>
 @endsection

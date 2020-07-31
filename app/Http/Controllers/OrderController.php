@@ -75,14 +75,14 @@ class OrderController extends Controller
     }
 
     public function orderDetail($id){
-        $orders = Order::find($id);
+        $order = Order::find($id);
 
         $orderDetail = DB::table('orderdetails')
-        ->where('order_id',$orders->id)
+        ->where('order_id',$order->id)
         ->join('products','orderdetails.product_id','products.id')
         ->get();
 
-        return view('order.orderdetail',compact('orders','orderDetail'));
+        return view('order.orderdetail',compact('order','orderDetail'));
     }
     
     public function listStoreOrders(){

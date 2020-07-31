@@ -3,16 +3,28 @@
 @section('title') <title>Crear Producto - Store</title> @endsection
 
 @section('body')
-    <div class="container">
-        <div class="row">
-            {!! Form::open(['route' => 'user.seller.product.store', 'enctype'=>'multipart/form-data']) !!}
-            {{ Form::token()}}
-    
-            @include('product.field')
-    
-            {{Form::submit('Click Me!')}}
+    <div class="section__content section__content--p30">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-title">
+                                <h3 class="text-center title-2">Datos Generales</h3>
+                            </div>
+                            <hr>
+                            <div class="login-form">
+                                {!! Form::open(['route' => 'user.seller.product.store', 'enctype'=>'multipart/form-data']) !!}
+                                    @csrf
 
-            {!! Form::close() !!}
+                                    @include('product.field')
+                                    
+                                {!! Form::close() !!}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 @endsection

@@ -32,6 +32,7 @@ class StoreController extends Controller
         ->join('users','users.id','orders.user_id')
         ->selectRaw("orders.id as id, CONCAT(users.first_name, ' ', users.last_name) as names, orders.created_at as date, subtotal, amount, shipping, status")
         ->get();
+        $store = Store::where('user_id',Sentinel::getUser()->id)->first();
 
         return view('store.index',compact('store', 'products','orders'));
     }

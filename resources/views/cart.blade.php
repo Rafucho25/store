@@ -9,15 +9,17 @@
             @php
                 $quantity = DB::table('products')->where('id',$productCart->product_id)->value('quantity');
             @endphp
-            <br> <br>
-            <div class="row product" id="{{$productCart->id}}">
-                <div class="col-ms-4 logo">
-                    <img src="{{$productCart->logo}}" width="250" height="200" alt="{{$productCart->name}}">
-                </div>
-                <div class="col-ms-6">
-                    <a href="productCart/{{$productCart->product_id}}">{{$productCart->name}}</a>
-                    <p class="condition">{{$productCart->condition}}</p>
-                    <strong>Price: {{$productCart->price}} </strong>
+            
+
+            <div class="container-fluid">
+                <div class="row" id="{{$productCart->id}}">
+                  <div class="col-sm-4">
+                    <img src="{{$productCart->logo}}" width="300px" height="300px" alt="">
+                  </div>
+                  <div class="col-sm-8">
+                    <p><strong>Producto: &nbsp;</strong> {{$productCart->name}}</p> <br>
+                    <p class="condition"> <strong> Condicion: &nbsp;</strong>  {{$productCart->condition}} </p> <br>
+                    <p> <strong>Precio RD: &nbsp;</strong>{{number_format($productCart->price,2)}}</p> <br>
                     <label for="">Cantidad</label>
                     <select name="quantity" id="quantity">
                         @for ($i = 1; $i <= $quantity; $i++)
@@ -29,13 +31,16 @@
                         @endfor
                     </select>
                     <div class="row-reverse">
-                        <div class="float-right"><i class="fas fa-times text-danger" id="{{$productCart->id}}"></i></div>
+                        <button id="{{$productCart->id}}" class="au-btn au-btn-icon au-btn--red">Eliminar del Carrito</button>
                         <div role="alert" id="result{{$productCart->id}}"></div>
                     </div>
+                  </div>
                 </div>
             </div>
             @endforeach
-            <a href=" {{route('user.preorder')}} " class="btn btn-primary" id="order">Ordenar</a>
+            <div class="row-reverse"> <br>
+                <a href=" {{route('user.preorder')}} " id="order" class="au-btn au-btn-icon au-btn--blue">Ordenar</a>
+            </div>
         @else
         <div id="message" style="display: none">
             <h3>Tu carrito esta vacio. <a href=" {{route('search')}} ">Busca</a> un producto y al agregarlo al carrito aparecera aqui</h3>
@@ -43,35 +48,11 @@
         @endif
     </div>
 
-    @foreach ($cart as $product)
-    <div class="container-fluid">
-        <div class="row">
-          <div class="col-sm-4">
-            <img src="{{$product->logo}}" width="300px" height="300px" alt="">
-          </div>
-          <div class="col-sm-8">
-            <p><strong>Producto: &nbsp;</strong> {{$product->name}}</p> <br>
-            <p><strong>Descripcion: &nbsp;</strong> {{$product->description}}</p> <br>
-            <p> <strong>Precio RD: &nbsp;</strong>{{number_format($product->price,2)}}</p> <br>
-            <p><strong>Cantidad disponible:</strong> &nbsp; {{$product->quantity}}</p> <br>
-            <input type="hidden" id="available" value="{{$product->quantity}}">
-            <label for=""><strong>Cantidad a comprar:</strong> &nbsp;</label>
-            <input type="text" name="quantity" id="quantity">
-            <span id="errorQuantity"></span>
-            <button class="au-btn au-btn-icon au-btn--blue">
-                <i class="zmdi zmdi-plus"></i>Agregar al carrito</button>
-            <input type="button" onclick="add()" id="add" value="Agregar al carrito">
-            <div role="alert" id="result{{$product->id}}"></div>
-          </div>
-        </div>
-      </div>
-    @endforeach
-
 @endsection
 
 @section('footer')
     <script>
-        $('.fa-times').click(function() {
+        $('.au-btn--red').click(function() {
             id = event.target.id;
             $.ajax({
                 type: "get",
