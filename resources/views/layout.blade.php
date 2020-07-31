@@ -255,7 +255,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="copyright">
-                <p>Copyright © {{date("Y")}} Realizado por Rafael Tavarez</p>
+                <p>Copyright © {{date("Y")}} Realizado por Nombre: Rafael Tavarez Matricula: 100401245 Asignatura: Lenguaje de Programación III Sección: 03 Profesor: Jimmy Rosario Bernard</p>
             </div>
         </div>
     </div>
