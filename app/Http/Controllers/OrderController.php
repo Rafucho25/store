@@ -8,6 +8,7 @@ use App\Mail\OrderShipped;
 use Mail;
 use Sentinel;
 use App\Model\Order;
+use App\Model\Product;
 use App\Model\Orderdetail;
 use App\Model\Shoppingcart;
 
@@ -58,6 +59,11 @@ class OrderController extends Controller
             $orderDetail->quantity = $item->order_quantity;
             $orderDetail->condition = $item->condition;
             $orderDetail->save();
+
+            /*Restamos la cantidad comprada al producto */
+            $product = Product::find($item->product_id);
+            $product->quantity = $item->current_quantity - $item->order_quantity;
+            $product->save();
         }
 
         /*Elimino del carrito*/

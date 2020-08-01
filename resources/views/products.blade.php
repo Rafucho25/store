@@ -17,12 +17,19 @@
       <p> <strong>Precio RD: &nbsp;</strong>{{number_format($product->price,2)}}</p> <br>
       <p><strong>Cantidad disponible:</strong> &nbsp; {{$product->quantity}}</p> <br>
       <input type="hidden" id="available" value="{{$product->quantity}}">
-      <label for=""><strong>Cantidad a comprar:</strong> &nbsp;</label>
-      <input type="text" name="quantity" id="quantity">
-      <span id="errorQuantity"></span>
-      <button onclick="add()" class="au-btn au-btn-icon au-btn--blue">
-          <i onclick="add()" class="zmdi zmdi-plus"></i>Agregar al carrito</button>
-      <div role="alert" id="result{{$product->id}}"></div>
+      
+      @if ($product->quantity > 0)
+        <label for=""><strong>Cantidad a comprar:</strong> &nbsp;</label>
+        <input type="text" name="quantity" id="quantity">
+        <span id="errorQuantity"></span>
+        <button onclick="add()" class="au-btn au-btn-icon au-btn--blue">
+            <i onclick="add()" class="zmdi zmdi-plus"></i>Agregar al carrito</button>
+        <div role="alert" id="result{{$product->id}}"></div>
+      @else
+        <label for=""><strong>No tenemos unidades disponibles en este momento.</strong> &nbsp;</label>
+      @endif
+
+      
     </div>
   </div>
 </div>
